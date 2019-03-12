@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="icon" href="images/sits-icon.png" type="image/gif" sizes="50x50">
+    <title>Recruitment - Login</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+	
+	<style>
+	#inputEmail-error, #inputPassword-error{
+	position:relative;
+	}
+	</style>
+  </head>
+
+  <body class="bg-dark">
+
+    <div class="container">
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+          <form id="loginForm" >
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control"  placeholder="Email address" required="required" autofocus="autofocus">
+                <label for="inputEmail">Email address</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Minimum six characters, at least 1 letter and number" required="required">
+                <label for="inputPassword">Password</label>
+              </div>
+            </div>
+            <span class="alert-danger" id="login_failed"></span><br>
+            
+            <button type="button" class="btn btn-primary btn-block" id="butlogin" onClick="userlogin()">Login</button>
+          </form>
+          <div class="text-center">
+            <!-- <a class="d-block small mt-3" href="register.html">Register an Account</a> -->
+            <a class="d-block small"  href="forgot-password.html">Forgot Password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	 <script src="vendor/jquery/jquery.validate.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/cookie-process.js"></script>
+    <script src=" js/validation.js"></script>
+  	<script src="js/util.js"></script>
+  	<!-- <script src="src/resources/hostconfig.js"></script>  -->
+     <!-- <script type="text/javascript" src="/js/bootbox.min.js"></script> -->
+ <script>
+  function userlogin(){
+	  if($('#loginForm').valid()){
+	    var email = $("#inputEmail").val();
+	    var userPassword = $("#inputPassword").val();
+	   // console.log(email);
+		// console.log(password);
+	        $.ajax({
+		    	type: "POST",
+				url: contextPath()+"login/loginProcess",
+				dataType: 'json',
+	            contentType: 'application/json',
+				data: JSON.stringify({email:email, userPassword:userPassword}),
+				success: function(data) {
+			        if (data.length == 0) {
+			        	document.getElementById("login_failed").innerHTML = "Login Failed";
+			            $('#loginForm').trigger("reset");
+			        }
+			        else {
+			        	console.log(data);
+			        	updateCookie(data);
+			            window.location.replace('atr.html');
+			        }
+			    }
+	  		});
+	  }
+	  else {
+		  document.getElementById("login_failed").innerHTML = "Enter Valid details";
+	     }
+} 
+  $(document).ready(function(){
+  $("#loginForm").validate({
+	    rules: {
+	    	inputPassword: {
+	        required: true,
+	        password:true
+	      },
+	      inputRepassword: {
+	        required: true,
+	        password:true
+	      },
+	    },
+	     onfocusout: function(element) {
+	        $(element).valid();
+	    },
+	  });
+  
+  });
+  
+  $(document).on('keypress',function(e) {
+	    if(e.which == 13) {
+	    	if($($('#inputEmail').val() && $('#inputPassword').val())) {
+				$('#butlogin').trigger('click');
+				return false;
+	    	}
+	    }
+	});
+ </script>
+  </body>
+
+</html>
+
+

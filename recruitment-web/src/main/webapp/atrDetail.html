@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+ <link rel="icon" href="images/sits-icon.png" type="image/gif" sizes="50x50">
+<title>ATR</title>
+
+<!-- Bootstrap core CSS-->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap datepicker CSS-->
+<link href="vendor/bootstrap/css/bootstrap-datepicker.min.css"
+	rel="stylesheet">
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+
+<!-- Page level plugin CSS-->
+<link href="vendor/datatables/dataTables.bootstrap4.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/sb-admin.css" rel="stylesheet">
+
+
+
+
+<style type="text/css">
+#canmodal {
+	position: inherit;
+	padding-left: 180px;
+}
+
+.modal-body {
+	max-height: calc(100vh - 210px);
+	overflow-y: auto;
+}
+
+.center {
+	margin-top: 50px;
+}
+
+.modal-header {
+	padding-bottom: 5px;
+}
+
+.modal-footer {
+	padding: 0;
+}
+
+.modal-footer .btn-group button {
+	height: 40px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border: none;
+	border-right: 1px solid #ddd;
+}
+
+.modal-footer .btn-group:last-child>button {
+	border-right: 0;
+}
+
+.tooltip-inner {
+	background: #6c757d !important;
+}
+
+#positionStatusForm label.error {
+	color: red;
+}
+
+#positionStatusForm input.error {
+	color: 1px solid orange;
+}
+
+#recruiter_add_candidateDetailForm label.error {
+	color: red;
+	position: relative;
+}
+
+#recruiter_add_candidateDetailForm input.error {
+	color: 1px solid orange;
+}
+
+#manager_add_candidateDetailForm label.error {
+	color: red;
+	position: relative;
+}
+
+#manager_add_candidateDetailForm input.error {
+	color: 1px solid orange;
+}
+
+#InProgressToOtherPositionStatusForm label.error {
+	color: red;
+	position: relative;
+}
+
+#InProgressToOtherPositionStatusForm input.error {
+	color: 1px solid orange;
+}
+#managerOfferedPositionStatusForm label.error { color: red; position:relative;}
+#managerOfferedPositionStatusForm input.error{color:1px solid orange; }
+	
+#RecInProgressToOtherPositionStatusFormlabel.error { color: red; position:relative;}
+#RecInProgressToOtherPositionStatusForm input.error{color:1px solid orange; }
+
+#recOfferedPositionStatusForm label.error { color: red; position:relative;}
+#recOfferedPositionStatusForm input.error{color:1px solid orange; }
+	
+
+
+
+.sortable1, .sortable2, .sortable3 {
+	list-style-type: none;
+	margin: 0;
+	float: center;
+	margin-right: 5px;
+	background: #e4dbdb5e;
+	padding: 10px;
+	width: 150px;
+	min-width: 150px;
+	min-height: 150px;
+}
+
+.sortable1 div, .sortable2 div, .sortable3 div {
+	border: groove;
+	margin: 5px;
+	font-size: 1.2em;
+	width: 120px;
+}
+
+.sortable4, .sortable5 {
+	list-style-type: none;
+	margin: 0;
+	float: center;
+	margin-right: 5px;
+	background: #e4dbdb5e;
+	padding: 10px;
+	width: 150px;
+	min-width: 150px;
+	min-height: 150px;
+}
+
+.sortable4 div, .sortable5 div {
+	border: groove;
+	margin: 5px;
+	font-size: 1.2em;
+	width: 120px;
+}
+</style>
+
+</head>
+
+<body id="page-top">
+
+	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+		<a class="navbar-brand mr-1" href="index.html">Authorize To
+			Recruiter</a>
+
+		<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
+			id="sidebarToggle" href="#">
+			<i class="fas fa-bars"></i>
+		</button>
+
+		<!-- Navbar Search -->
+
+		<!-- Navbar -->
+		<ul class="navbar-nav ml-auto">
+			<li style="color: white; padding-top: 8px;" class="text-capitalize"
+				id="loguserName"></li>
+			<li class="nav-item dropdown no-arrow"><a
+				class="nav-link dropdown-toggle" href="#" id="userDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <i class="fas fa-user-circle fa-fw"></i>
+			</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#" data-toggle="modal"
+						data-target="#logoutModal">Logout</a>
+				</div></li>
+		</ul>
+
+	</nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav">
+
+			<li class="nav-item active"><a class="nav-link" href="atr.html">
+					<i class="fas fa-fw fa-table"></i> <span>ATR</span>
+			</a></li>
+
+			<li class="nav-item"><a class="nav-link" href="report.html">
+					<i class="fas fa-fw fa-file"></i> <span>Report</span>
+			</a></li>
+
+			<li class="nav-item "><a class="nav-link" href="user.html">
+					<i class="fas fa-fw fa-user"></i> <span>User</span>
+			</a></li>
+
+			<li class="nav-item"><a class="nav-link" href="client.html">
+					<i class="fas fa-fw fa-users"></i> <span>Client</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="master.html">
+					<i class="fas fa-fw fa-table"></i> <span>Master Table</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+
+			<div class="container-fluid">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active"><a
+						href="javascript:history.back(1)">Back</a></li>
+					<li class="breadcrumb-item active">ATR-Based on Position</li>
+				</ol>
+
+				<!-- DataTables Example -->
+				<div class="card mb-3">
+					<div class="card-header">
+						<div id="jobDescription"></div>
+						<!-- <a class="nav-link" href="#" id="holdPositions" onclick="showHoldPositions()" role="button">
+	            <i class="fas fa-user-circle fa-fw"></i>
+	             </a> -->
+						<button style="cursor: pointer; float: right"
+							onclick="showHoldPositions(22)" data-toggle="tooltip"
+							data-placement="top" data-html="true" title="">Hold
+							Positions</button>
+						<button style="cursor: pointer; float: right"
+							onclick="showHoldPositions(19)" data-toggle="tooltip"
+							data-placement="top" data-html="true" title="">Declined
+							Candidates</button>
+						<button style="cursor: pointer; float: right"
+							onclick="showHoldPositions(21)" data-toggle="tooltip"
+							data-placement="top" data-html="true" title="">Dropped
+							Positions</button>
+					</div>
+					<div class="card-body">
+						<div class="container" id="managerDiv">
+
+							<div class="row">
+								<div class="col-sm">
+									<label>Yet to start-</label> <label id="todocount"></label>
+									<div id="toDo" class='sortable1'></div>
+								</div>
+								<div class="col-sm">
+									<label>In progress-</label><label id="inpCount"></label>
+									<div id="inprogress" class='sortable2'></div>
+								</div>
+								<div class="col-sm">
+									<label>Offered-</label><label id="offerCount"></label>
+									<div id="offer" class='sortable3'></div>
+								</div>
+								<div class="col-sm">
+									<label>Fulfilled-</label><label id="fulfilledCount"></label>
+									<div id="closed" class='sortable3'></div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="container" id="recruiterDiv">
+
+							<div class="row">
+								<div class="col-sm">
+									<label>In progress-</label><label id="rec_inpCount"></label>
+									<div id="rec-inprogress" class='sortable4'></div>
+								</div>
+								<div class="col-sm">
+									<label>Offered-</label><label id="rec_offerCount"></label>
+									<div id="rec-offer" class='sortable5'></div>
+								</div>
+								<div class="col-sm">
+									<label>Fulfilled-</label><label id="rec_fulFillCount"></label>
+									<div id="rec-fulfill" class='sortable5'></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+					<!--Change TODo status to inprogress  -->
+					<div class="modal fade" id="editYetToPosModal" tabindex="-1"
+						role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title text-capitalize" id="lineModalLabel">
+										Edit position - <label id="atrposLink"></label>
+									</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										onclick="resetTodoPositionFormFunction()">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<div class="card">
+											<h6>Position Information</h6>
+											<div class="row">
+												<div class="col-sm-6">
+													<div>
+														<label>Client Name :</label> <span class ="text-capitalize" id="PclientName"></span>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div>
+														<label>Location :</label> <span class ="text-capitalize" id="Plocation"></span>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<div>
+														<label>Experience :</label> <span id="Pexperience">
+														</span>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div>
+														<label>Min Salary :</label> <span id="Pmaxsalary">
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<div>
+														<label>Max Salary:</label> <span id="Pminsalary"> </span>
+													</div>
+												</div>
+
+												<div class="col-sm-6">
+													<div>
+														<label>Role:</label> <span class ="text-capitalize" id="Prole"></span>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div>
+														<label>Skills:</label> <span class ="text-capitalize" id="Pskills"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<br>
+										<form id="positionStatusForm">
+														<input type="hidden" name="atrId" id="atrId"> 
+														<input type="hidden" name="posId" id="posId">
+														<input type="hidden" name="atsId" id="atsId">
+											<div class="row">
+												<div class="col-sm-6">
+													<label>Status : </label>
+													<div class="input-group">
+														<span class="fas fa-fw fa-user"
+															style="display: inline-flex"></span><select
+															class="form-control" name="posStatusId"
+															id="positionStatus"
+															onchange="changePositionStatus(this.value)">
+															<option value="">Select Status</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6 DHhide">
+													<label>Recruiter : </label>
+													<div class="input-group">
+														<span class="fas fa-fw fa-user"
+															style="display: inline-flex"></span> <select
+															class="form-control" name="assignedTo" id="assigneeList">
+															<option value="">Select Recruiter</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6 DHhide">
+													<label>Reporter : </label>
+													<div class="input-group">
+														<span class="fas fa-fw fa-user"></span>
+														<div class="form-control text-capitalize">
+															<label id="reporter"></label>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<label>Status Update Date : </label>
+													<div class="input-group">
+														<span class="fas fa-fw fa fa-calendar"></span>
+														<!-- 														  <div class="form-control text-capitalize datepicker"> -->
+														<input class="form-control text-capitalize datepicker"
+															type="text" placeholder="Select Date"
+															id="ToStatusChangeDate" name="statusChangeDate">
+														<!-- 														</div> -->
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-sm-12 ">
+													<label>Comment : </label> 
+													<div class="input-group">
+														<span class="fas fa-fw fa-comment"
+															style="display: inline-flex"></span>
+														<textarea class="form-control" rows="4" name="comment" id="comment"
+															placeholder="Add a comment...">In progress</textarea>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="btn-group btn-group-justified" role="group"
+										aria-label="group button">
+										<div class="btn-group" role="group">
+											<button class="btn btn-success"
+												onclick="updatePositionDetail()">Update</button>
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal" onclick="resetTodoPositionFormFunction()"
+												role="button">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<!--Change inprogress to other status  -->
+					<div class="modal fade" id="editInprogressToOtherModal"
+						tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content" style="width: 1000px">
+								<div class="modal-header">
+									<h4 class="modal-title text-capitalize" id="lineModalLabel">
+										Inprogress Position - <label id="iatrposLink"></label>
+									</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										onclick="resetFormFunction()">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<form id="InProgressToOtherPositionStatusForm">
+											<div class="row">
+												<div class="col-sm-6 ">
+													<h3>Position Information</h3>
+													<div>
+														<label>Recruiter Name :</label> <span class ="text-capitalize" id="ireporter"></span>
+													</div>
+													<div>
+														<label>Client Name :</label> <span class ="text-capitalize" id="iclientName"></span>
+													</div>
+													<div>
+														<label>Experience :</label> <span id="iexperience"></span>
+													</div>
+													<div>
+														<label>Location :</label> <span class ="text-capitalize" id="ilocation"></span>
+													</div>
+													<div>
+														<label>Min Salary :</label> <span id="imaxsalary"></span>
+													</div>
+													<div>
+														<label>Max Salary:</label> <span id="iminsalary"></span>
+													</div>
+													<div>
+														<label>Role:</label> <span class ="text-capitalize" id="irole"></span>
+													</div>
+													<div>
+														<label>Skills:</label> <span class ="text-capitalize" id="iskills"></span>
+													</div>
+													<input type="hidden" name="atrId" id="iatrId"> <input
+														type="hidden" name="posId" id="iposId"> <input
+														type="hidden" name="atsId" id="iatsId">
+												</div>
+												<div class="col-sm-6" id="ManagerCandidateDetailDivDisplay">
+													<h3>Candidate Information</h3>
+													<!-- Display Candidate Details -->
+													<div class="table-responsive">
+														<input type="hidden" id="candidateId">
+														
+														<div>
+															<label>First Name :</label> <span class ="text-capitalize" id="cFirstName"></span>
+														</div>
+														<div>
+															<label>Last Name :</label> <span class ="text-capitalize" id="cLastName"></span>
+														</div>
+														<div>
+															<label>Email :</label> <span id="cEmail"></span>
+														</div>
+														<div>
+															<label>Mobile :</label> <span id="cMobile"></span>
+														</div>
+														<div>
+															<label>Offered Date :</label> <span id="cOfferedDate"></span>
+														</div>
+														<div>
+															<label>Expected Joining Date :</label> <span
+																id="cJoiningDate"></span>
+														</div>
+														<div>
+															<input type="file" id="cFileAttachment">
+														</div>
+														
+													</div>
+												</div>
+											</div>
+
+											<div class="row pull-right">
+												<div class="col-sm-9">
+													<label> Position Status : </label>
+													<div>
+														<select name="posStatusId"
+															id="inprogressPositionStatusForManager"
+															onchange="changeInprogressPositionStatusByManager(this.value)"
+															required="required">
+															<option value="">Select Status</option>
+														</select>
+													</div>
+
+													<div class="input-group" hidden="true">
+														<span class="fas fa-fw fa-comment"
+															style="display: inline-flex"></span>
+														<textarea class="form-control" rows="4" name="comment"
+															placeholder="Add a comment..." id="iComment">inprogress</textarea>
+													</div>
+													<label>Status change date : </label>
+													<div>
+														<input type="text" autocomplete="off"
+															id="InprogressStatusChangeDate" class="statusDate"
+															placeholder="select status date" name="statusChangeDate">
+													</div>
+													<div class="inprogressCandidateStatusAndJoinDateDiv">
+														<label>Candidate Status:</label>
+														<div>
+															<select name="candidateStatus" id="inprogressCandidateStatusByManager"
+																onchange="changeInprogressCandidateStatusByManager(this.value)">
+																<option value="">Select Status</option>
+																<option value="23">Joined</option>
+																<option value="19">Declined</option>
+															</select>
+														</div>
+													</div>
+													<div class="inprogressCandidateStatusAndJoinDateDiv">
+														<label>Joining Date:</label>
+														<div>
+															<input type="text" autocomplete="off"
+																placeholder="Select joining Date" id="miJoiningDate"
+																name="joiningDate">
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+										<!-- manager candidate form -->
+										<div id="managerAddCandidateDetailDiv" hidden="true">
+											<h3>Candidate Add Form</h3>
+											<form id="manager_add_candidateDetailForm"
+												class="form-inline ">
+												<input type="hidden" id="icatrId" name="atrId"> <input
+													type="hidden" id="icposId" name="posId">
+												<div class="row">
+													<input type="text" placeholder="First name" class="form-control mb-1 mr-sm-1 text-capitalize" name="firstName" id="manger_add_firstName"> 
+													<input type="text" placeholder="Last name" class="form-control mb-1 mr-sm-1 text-capitalize" name="lastName" id="manger_add_lastName"> 
+													<input type="email" placeholder="Enter Email" class="form-control mb-1 mr-sm-1" name="email" id="manger_add_email" autocomplete="off"> 
+													<input type="tel" placeholder="Enter Mobile" class="form-control mb-1 mr-sm-1" name="mobile" id="manger_add_mobile" maxlength="10"> 
+													<!-- <input type="file" class="form-control mb-1 mr-sm-1" name="uploadfile" id="manger_add_attachment" /> --> 
+													<input type="text" placeholder="Select offered date" class="form-control mb-1 mr-sm-1 candidateOfferedDate" id="manger_add_candidateOfferedDate" name="offeredDate" autocomplete="off"> 
+													<input type="text" placeholder="Select expect joining date" class="form-control mb-1 mr-sm-1 candidateExpectedJoiningDate" id="manger_add_candidateExpectedJoiningDate" name="joiningDate" autocomplete="off">
+													<button type="button" class="btn btn-primary mb-2" onclick="mangerAddCandidate()">ADD</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="btn-group btn-group-justified" role="group"
+										aria-label="group button">
+										<div class="btn-group" role="group">
+											<button class="btn btn-success"
+												onclick="updateInprogressPositionByManager()">Update</button>
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal" role="button"
+												onclick="resetFormFunction()">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<!--Manager Offered status detail modal   -->
+					<div class="modal fade" id="managerOfferedStatusModal"
+						tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content" style="width: 1000px">
+								<div class="modal-header">
+									<h4 class="modal-title text-capitalize" id="lineModalLabel">
+										Offered Position - <label id="closeatrposLink"></label>
+									</h4>
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<form id="managerOfferedPositionStatusForm">
+										<div class="row ">
+											<div class="col-sm-6">
+													<h3>Position Information</h3>
+													<div><label >Recruiter :</label> <span class ="text-capitalize" id="mofrecruiter"></span></div>	
+													<div><label >Client Name :</label> <span class ="text-capitalize" id="mofclientName"></span></div>
+													<div><label >Experience :</label> <span id="mofexperience"></span></div>
+													<div><label >Location :</label> <span id="moflocation"></span></div>
+													<div><label >Min Salary :</label> <span id="mofmaxsalary"></span></div>
+													<div><label >Max Salary:</label> <span id="mofminsalary"></span></div>
+													<div><label >Role:</label> <span class ="text-capitalize" id="mofrole"></span></div>
+													<div><label >Skills:</label> <span class ="text-capitalize" id="mofskills"></span></div>
+													<input type="hidden" name="atrId" id="managerOfferedAtrId">
+													<input type="hidden" name="posId" id="managerOfferedPosId">
+													<input type="hidden" name="atsId" id="managerOfferedAtsId">
+											</div>
+												<div class="col-sm-6" id="managerOfferedCandidateDetailDivDisplay">
+													<!-- Display Candidate Details -->
+													<div class="table-responsive">
+														<h3>Offered Candidate Detail</h3>
+														<div id="ManagerCandidateDetailDivDisplay">
+															<input type="hidden" id="manager_offerPos_OffercandidateId">
+															<div><label >First Name :</label> <span class ="text-capitalize" id="manager_offerPos_CandidateFirstName"></span></div>
+															<div><label >Last Name :</label> <span class ="text-capitalize"  id="manager_offerPos_CandidateLastName"></span></div>
+															<div><label >Email :</label> <span id="manager_offerPos_CandidateEmail"></span></div>
+															<div><label >Mobile :</label> <span id="manager_offerPos_CandidateMobile"></span></div>
+															<div><label >Offered Date :</label> <span id="manager_offerPos_CandidateOfferedDate"></span></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										
+									<div class="row">	
+									  	 <div class="col-sm-6">
+											
+											<div class="offeredCandidateStatusDiv" >
+												<label>Candidate Status:</label>
+												<div>
+													<select id="managerOfferedCandidateStatus" name="candidateStatus" onchange="changeOfferedCandidateStatusByManager(this.value)">
+														<option value="" >Select Status</option>
+														<option value="23">Joined</option>
+														<option value="19">Declined</option>
+													</select>
+												</div>
+											</div>
+											<div class="offeredCandidateJoinDateDiv" id="candidateJoiningDateDiv">
+												<label>Joining Date:</label>
+												<div>
+													<input type="text" placeholder="Select joining Date" id="mJoiningDate"  name="joiningDate">
+												</div>
+											</div>
+											
+											<label>Postion Status : </label>
+											<div>
+												<select  name="posStatusId" id="offeredPositionStatusForManager" onchange="changeOfferedPositionStatusByManager(this.value)">
+													<option value="">Select Status</option>
+												</select>
+											</div>	
+											
+											<label>Status change date : </label>
+											<div>
+												<input type="text"  class="statusDate"  placeholder="select status date" name="statusChangeDate" autocomplete="off">
+											</div>
+											
+										</div>
+									</div>
+								</form>
+								</div>
+								</div>
+								
+								<div class="modal-footer">
+									<div class="btn-group btn-group-justified" role="group"
+										aria-label="group button">
+										<div class="btn-group" role="group">
+											<button class="btn btn-success"
+												onclick="updateOfferedPositionToOtherByManager()">Update</button>
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal" role="button">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Closed status modal  -->
+					<div class="modal fade" id="managerFulfilledStatusModal"
+						tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title text-capitalize" id="lineModalLabel">
+										Fulfilled Position - <label id="fulfillatrposLink"></label>
+									</h4>
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<form id="fulfilledPositionStatusForm">
+											<div class="row">
+												<div class="col-sm-6 col-md-6 col-xs-6">
+													<h4>Position Information</h4>
+													<div>
+														<label>Recruiter :</label> <span class="text-capitalize"
+															id="fulfillrecruiter"></span>
+													</div>
+													<div>
+														<label>Client Name :</label> <span class="text-capitalize"
+															id="fulfillclientName"></span>
+													</div>
+													<div>
+														<label>Experience :</label> <span id="fufilllexperience"></span>
+													</div>
+													<div>
+														<label>Location :</label> <span id="fullfilllocation"></span>
+													</div>
+													<div>
+														<label>Min Salary :</label> <span id="fulfillmaxsalary"></span>
+													</div>
+													<div>
+														<label>Max Salary:</label> <span id="fulfillminsalary"></span>
+													</div>
+													<div>
+														<label>Role:</label> <span class="text-capitalize"
+															id="fulfillrole"></span>
+													</div>
+													<div>
+														<label>Skills:</label> <span class="text-capitalize"
+															id="fulfillskills"></span>
+													</div>
+													<input type="hidden" name="atrId" id="fulfillatrId">
+													<input type="hidden" name="posId" id="fulfillposId">
+													<input type="hidden" name="atsId" id="fulfillatsId">
+												</div>
+
+												<div class="col-sm-6 col-md-6 col-xs-6">
+													<h4>Fulfilled Candidate Information</h4>
+													<input type="hidden" id="fullfillCandidateId">
+													<div>
+														<label>First Name :</label> <span class="text-capitalize"
+															id="fullFillCandidateFirstName"></span>
+													</div>
+													<div>
+														<label>Last Name :</label> <span class="text-capitalize"
+															id="fullFillCandidateLastName"></span>
+													</div>
+													<div>
+														<label>Email :</label> <span id="fullFillCandidateEmail"></span>
+													</div>
+													<div>
+														<label>Mobile :</label> <span id="fullFillCandidateMobile"></span>
+													</div>
+													<div>
+														<label>Offered Date :</label> <span
+															id="fullFillCandidateOfferedDate"></span>
+													</div>
+													<div>
+														<label>Joining Date :</label> <span
+															id="fullFillCandidateJoiningDate"></span>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- recruiter inprogress add candidate information modal -->
+					<div class="modal fade" id="recruiterInprogressPositionModal"
+						tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg" id="canmodal">
+							<div class="modal-content" style="width: 1100px">
+								<div class="modal-header">
+									<h4 class="modal-title text-capitalize" id="lineModalLabel">
+										Recruiter Inprogress Position - <label id="rec_inp_atrposLink"></label>
+									</h4>
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<form id="RecInProgressToOtherPositionStatusForm">
+											<div class="row text-capitalize">
+												<div class="col-sm-6">
+													<h3>Position Information</h3>
+													<div>
+														<label>Recruiter Name :</label> <span
+															id="rec_inp_reporter"></span>
+													</div>
+													<div>
+														<label>Client Name :</label> <span id="rec_inp_clientName"></span>
+													</div>
+													<div>
+														<label>Experience :</label> <span id="rec_inp_experience"></span>
+													</div>
+													<div>
+														<label>Location :</label> <span id="rec_inp_location"></span>
+													</div>
+													<div>
+														<label>Min Salary :</label> <span id="rec_inp_maxsalary"></span>
+													</div>
+													<div>
+														<label>Max Salary:</label> <span id="rec_inp_minsalary"></span>
+													</div>
+													<div>
+														<label>Role:</label> <span id="rec_inp_role"></span>
+													</div>
+													<div>
+														<label>Skills:</label> <span id="rec_inp_skills"></span>
+													</div>
+
+													<input type="hidden" id="rec_atrId" name="atrId"> <input
+														type="hidden" id="rec_posId" name="posId">
+
+													<!-- <input type="hidden" name="atrId" id="iatrId">
+											<input type="hidden" name="posId" id="iposId">
+											<input type="hidden" name="atsId" id="iatsId"> -->
+												</div>
+												<div class="col-sm-6"
+													id="recruiterCandidateDetailDivDisplay">
+													<h3>Candidate Information</h3>
+													<!-- Display Candidate Details -->
+													<div class="table-responsive">
+														<input type="hidden" id="candidateId">
+														<div>
+															<label>First Name :</label> <span
+																id="rec_DisplayCan_FirstName"></span>
+														</div>
+														<div>
+															<label>Last Name :</label> <span
+																id="rec_DisplayCan_LastName"></span>
+														</div>
+														<div>
+															<label>Email :</label> <span id="rec_DisplayCan_Email"></span>
+														</div>
+														<div>
+															<label>Mobile :</label> <span id="rec_DisplayCan_Mobile"></span>
+														</div>
+														<div>
+															<label>Offered Date :</label> <span
+																id="rec_DisplayCan_OfferedDate"></span>
+														</div>
+														<div>
+															<label>Expected Joining Date :</label> <span
+																id="rec_DisplayCan_JoiningDate"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="row pull-right">
+												<div class="col-sm-9">
+													<label> Position Status : </label>
+													<div>
+														<select name="posStatusId"
+															id="inprogressPositionStatusForRecruiter"
+															onchange="changeInprogressPositionStatusByRecruiter(this.value)"
+															required="required">
+															<option value="">Select Status</option>
+														</select>
+													</div>
+
+													<div class="input-group" hidden="true">
+														<span class="fas fa-fw fa-comment"
+															style="display: inline-flex"></span>
+														<textarea class="form-control" rows="4" name="comment"
+															placeholder="Add a comment..." id="iComment">inprogress</textarea>
+													</div>
+													<label>Status change date : </label>
+													<div>
+														<input type="text" autocomplete="off"
+															class='recInprogressStatusChangeDate'
+															placeholder="select status date" name="statusChangeDate">
+													</div>
+													<div class="rec_InprogressCandidateStatusAndJoinDateDiv">
+														<label>Candidate Status:</label>
+														<div>
+															<select name="candidateStatus" id="inprogressCandidateStatusByRecruiter"
+																onchange="changeInprogressCandidateStatusByRecruiter(this.value)">
+																<option value="">Select Status</option>
+																<option value="23">Joined</option>
+																<option value="19">Declined</option>
+															</select>
+														</div>
+													</div>
+													<div class="rec_InprogressCandidateStatusAndJoinDateDiv">
+														<label>Joining Date:</label>
+														<div>
+															<input type="text" autocomplete="off"
+																placeholder="Select joining Date" id="miJoiningDate"
+																name="joiningDate">
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+
+										<!-- Recruiter candidate add form -->
+										<div id="recruiterAddCandidateDetailDiv" hidden="true">
+											<h3>Candidate Add Form</h3>
+											<form id="recruiter_add_candidateDetailForm"
+												class="form-inline">
+												<input type="hidden" id="icatrId" name="atrId"> <input
+													type="hidden" id="icposId" name="posId">
+												<div class="row">
+													<input type="text" placeholder="First name"class="form-control mb-1 mr-sm-1" name="firstName" id="recruiter_add_firstName"> 
+													<input type="text" placeholder="Last name" class="form-control mb-1 mr-sm-1" name="lastName" id="recruiter_add_lastName"> 
+													<input type="email" placeholder="Enter Email" class="form-control mb-1 mr-sm-1" name="email" id="recruiter_add_email" autocomplete="off"> 
+													<input type="tel" placeholder="Enter Mobile" class="form-control mb-1 mr-sm-1" name="mobile" id="recruiter_add_mobile" maxlength="10"> 
+													<input type="file" class="form-control mb-1 mr-sm-1" name="uploadfile" id="manger_add_attachment" /> 
+													<input type="text" placeholder="Select offered date" class="form-control mb-1 mr-sm-1 candidateOfferedDate" id="recruiter_add_candidateOfferedDate" name="offeredDate" autocomplete="off"> 
+													<input type="text" placeholder="Select expect joining date" class="form-control mb-1 mr-sm-1 candidateExpectedJoiningDate" id="recruiter_add_candidateExpectedJoiningDate" name="joiningDate" autocomplete="off">
+													<button type="button" class="btn btn-primary mb-2" onclick="recruiterAddCandidate()">ADD</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="btn-group btn-group-justified" role="group"
+										aria-label="group button">
+										<div class="btn-group" role="group">
+											<button class="btn btn-success"
+												onclick="updateInprogressPositionByRecruiter()">Update</button>
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal" role="button">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- show position by status -->
+					<div class="modal fade" id="otherPositionsModal" tabindex="-1"
+						role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" id="canmodal">
+							<div class="modal-content" style="width: 1100px">
+								<div class="modal-header">
+									<h5 class="modal-title text-capitalize lineModalLabel" ></h5>
+									<label id="recOffposLink"></label>
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<div id="displayNrecord"></div>
+										<div id="displayPositionsDiv">
+											<!-- Display Position Details -->
+
+											<div class="table-responsive">
+												<h5>Position Details</h5>
+												<table id="displayPositions"
+													class="table table-bordered table-striped" width="100%"
+													cellspacing="0">
+													<tr>
+														<th>S.No</th>
+														<th>Position ID</th>
+														<th>Position Status</th>
+														<th>Action</th>
+														<!-- <th>Status</th>
+											        <th>Action</th> -->
+													</tr>
+												</table>
+											</div>
+										</div>
+										<div id="displayDropPositionsDiv">
+											<!-- Display Candidate Details -->
+											<div class="table-responsive">
+												<h5>Position Details</h5>
+												<table id="displayDropPositions"
+													class="table table-bordered table-striped" width="100%"
+													cellspacing="0">
+													<tr>
+														<th>S.No</th>
+														<th>Position ID</th>
+														<th>Position Status</th>
+
+														<!-- <th>Status</th> -->
+													</tr>
+												</table>
+											</div>
+										</div>
+										<div id="displayCanPositionsDiv">
+											<!-- Display Candidate Details -->
+											<div class="table-responsive">
+												<h5>Candidate Details</h5>
+												<table id="displayCanPositions"
+													class="table table-bordered table-striped" width="100%">
+													<tr>
+														<th>S.No</th>
+														<th>ATR ID</th>
+														<th>Position ID</th>
+														<th>Candidate Name</th>
+														<th>Email</th>
+														<th>Mobile</th>
+													</tr>
+												</table>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="btn-group btn-group-justified" role="group"
+										aria-label="group button">
+										<div class="btn-group" role="group">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal" role="button">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- recruiter offered status with candidate modal -->
+					<div class="modal fade" id="recruiterOfferedCandidateModal"
+						tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg" id="canmodal">
+							<div class="modal-content" style="width: 1100px">
+								<div class="modal-header">
+									<h4 class="modal-title text-capitalize" id="lineModalLabel">
+										Recruiter Offered Position - <label id="recOfferedPosLink"></label>
+									</h4>
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<form id="recOfferedPositionStatusForm">
+											<div class="row">
+												<input type="hidden" name="atrId" id="recOfferedAtrId">
+												<input type="hidden" name="posId" id="recOfferedPosId">
+												<input type="hidden" name="atsId" id="recOfferedAtsId">
+												
+												<div class="col-sm-6">
+													<h3>Position Information</h3>
+													<div>
+														<label>Recruiter :</label> 
+														<span id="recOfferedRecruiter"></span>
+													</div>
+													<div>
+														<label>Client Name :</label> 
+														<span id="recOfferedClientName"></span>
+													</div>
+													<div>
+														<label>Experience :</label>
+														<span id="recOfferedExperience"></span>
+													</div>
+													<div>
+														<label>Location :</label>
+														 <span id="recOfferedLocation"></span>
+													</div>
+													<div>
+														<label>Min Salary :</label> 
+														<span id="recOfferedMaxsalary"></span>
+													</div>
+													<div>
+														<label>Max Salary:</label> 
+														<span id="recOfferedMinsalary"></span>
+													</div>
+													<div>
+														<label>Role:</label> 
+														<span id="recOfferedRole"></span>
+													</div>
+													<div>
+														<label>Skills:</label> 
+														<span id="recOfferedSkills"></span>
+													</div>
+												</div>
+												
+												<div class="col-sm-6 col-md-6 col-xs-6" id="recOfferedDiv">
+													<!-- Display Candidate Details -->
+													<h3>Offered Candidate Detail</h3>
+													<input type="hidden" id="recOfferedCandidateId">
+													<div>
+														<label>First Name :</label> 
+														<span id="recOfferedCandidateFirstName"></span>
+													</div>
+													<div>
+														<label>Last Name :</label>
+														 <span id="recOfferedCandidateLastName"></span>
+													</div>
+													<div>
+														<label>Email :</label> 
+														<span id="recOfferedCandidateEmail"></span>
+													</div>
+													<div>
+														<label>Mobile :</label> 
+														<span id="recOfferedCandidateMobile"></span>
+													</div>
+													<div>
+														<label>Offered Date :</label> 
+														<span id="recOfferedCandidateOfferedDate"></span>
+													</div>
+												</div>
+											</div>
+											<div class="row">	
+												<div class="col-sm-6 col-md-6 col-xs-6">
+													
+														<div class="recOfferedCandidateStatusAndJoinDateDiv">
+															<label>Candidate Status:</label>
+															<div>
+																 <select name="candidateStatus" id="recOfferedCandidateStatus" onchange="changeOfferedCandidateStatusByRecruiter(this.value)">
+																	<option value="">Select Status</option>
+																	<option value="23">Joined</option>
+																	<option value="19">Declined</option>
+																</select>
+															</div>
+														</div>	
+														<div class="recOfferedCandidateStatusAndJoinDateDiv">	
+															<label>Joining Date:</label>
+															<div>
+															 	<input type="text" placeholder="Select joining Date" id="recJoiningDate" name="joiningDate" autocomplete="off">
+															</div>
+														</div>
+														<div>
+															<label>Position Status : </label>
+															<div>
+																 <select name="posStatusId" id="offeredPositionStatusForRecruiter" 	onchange="changeOfferedPositionStatusByRecruiter(this.value)">
+																	<option value="">Select Status</option>
+																</select>
+															</div>
+														</div>	
+														<div>
+															<label>StatusChange Date : </label>
+															<div>
+																<input type="text"  id="recStatusChangeDate" placeholder="select status date" name="statusChangeDate" autocomplete="off">
+															</div>
+														</div>	
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								<div class="modal-footer">
+									<div class="btn-group btn-group-justified" role="group"
+										aria-label="group button">
+										<div class="btn-group" role="group">
+
+											<button class="btn btn-success"
+												onclick="updateOfferedPositionToOtherByRecruiter()">Update</button>
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal" role="button">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="modal fade" id="recruiterFulfilledCandidateModal"
+						tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg" id="canmodal">
+							<div class="modal-content" style="width: 1100px">
+								<div class="modal-header">
+									<h4 class="modal-title text-capitalize" id="lineModalLabel">
+										Fulfilled Candidate Information - <label
+											id="recFulfilledPosLink"></label>
+									</h4>
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container">
+										<form id="fulfilledPositionStatusForm">
+											<div class="row">
+												<!-- <div class="col-sm-6 col-md-6 col-xs-6">
+											<h3>Position Information</h3>
+											<div><label >Recruiter :</label> <span id="fulfillrecruiter"></span></div>	
+											<div><label >Client Name :</label> <span id="fulfillclientName"></span></div>
+											<div><label >Experience :</label> <span id="fufilllexperience"></span></div>
+											<div><label >Location :</label> <span id="fullfilllocation"></span></div>
+											<div><label >Min Salary :</label> <span id="fulfillmaxsalary"></span></div>
+											<div><label >Max Salary:</label> <span id="fulfillminsalary"></span></div>
+											<div><label >Role:</label> <span id="fulfillrole"></span></div>
+											<div><label >Skills:</label> <span id="fulfillskills"></span></div>
+											<input type="hidden" name="atrId" id="fulfillatrId">
+											<input type="hidden" name="posId" id="fulfillposId">
+											<input type="hidden" name="atsId" id="fulfillatsId">
+										</div> -->
+
+												<div class="col-sm-6 col-md-6 col-xs-6">
+													<h3>Fulfilled Candidate Information</h3>
+													<input type="hidden" id="recruiterFulfilledCandidateId">
+													<div>
+														<label>First Name :</label> <span
+															id="recruiterFulfilledCandidateFirstName"></span>
+													</div>
+													<div>
+														<label>Last Name :</label> <span
+															id="recruiterFulfilledCandidateLastName"></span>
+													</div>
+													<div>
+														<label>Email :</label> <span
+															id="recruiterFulfilledCandidateEmail"></span>
+													</div>
+													<div>
+														<label>Mobile :</label> <span
+															id="recruiterFulfilledCandidateMobile"></span>
+													</div>
+													<div>
+														<label>Offered Date :</label> <span
+															id="recruiterFulfilledCandidateOfferedDate"></span>
+													</div>
+													<div>
+														<label>Joining Date :</label> <span
+															id="recruiterFulfilledCandidateJoiningDate"></span>
+													</div>
+												</div>
+											</div>
+										</form>
+
+
+									</div>
+								</div>
+								<!-- <div class="modal-footer">
+							<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+								<div class="btn-group" role="group">
+									
+									<button class="btn btn-success" onclick="updateOfferedPositionToOtherByRecruiter()">Update</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Cancel</button>
+								</div>
+							</div>
+						</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- /.container-fluid -->
+
+			<!-- Sticky Footer -->
+			<footer class="sticky-footer">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright © Stratosphere 2019</span>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.html">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/jquery/jquery-ui.min.js"></script>
+
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Page level plugin JavaScript-->
+	<script src="vendor/datatables/jquery.dataTables.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+
+	<script src="vendor/jquery/jquery.serializejson.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin.min.js"></script>
+
+
+	<!-- Demo scripts for this page-->
+	<script src="js/demo/datatables-demo.js"></script>
+	<script src="js/validation.js"></script>
+	<script src="vendor/jquery/jquery.validate.min.js"></script>
+
+	<!--  <script type="text/javascript" src="/js/bootbox.min.js"></script> -->
+	<script src="js/util.js"></script>
+	<script src="js/cookie-process.js"></script>
+	<script src="js/ajax-loading.js"></script>
+	<script src="js/atrDetail.js"></script>
+	<script src="js/logout.js"></script>
+
+	<script src="vendor/bootstrap/js/bootstrap-datepicker.min.js"></script>
+
+</body>
+
+</html>
