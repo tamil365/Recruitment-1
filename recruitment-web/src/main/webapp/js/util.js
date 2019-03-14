@@ -1,6 +1,6 @@
 function contextPath() {
 //	return "http://"+location.host+"/rec/";
-	return "http://"+location.hostname+":8081/rec/";
+	return "http://"+location.hostname+":7072/rec/";
 }
 function ajaxCall(method,url) {
 	//var loading = $.loading();//used for ajax-loading image in every ajax request time.
