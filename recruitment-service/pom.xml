@@ -6,7 +6,7 @@
 	<artifactId>recruitment-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>recruitment-dao</name>
+	<name>recruitment-service</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -22,11 +22,7 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.metadata</groupId>
-			<artifactId>recruitment-dao</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
