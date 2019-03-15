@@ -30,7 +30,7 @@ public class UserDAOImpl implements UserDao {
 
 	DateUtil du = new DateUtil();
 	UserUtil uu = new UserUtil();
-	PasswordUtil pu = new PasswordUtil();
+	//PasswordUtil pu = new PasswordUtil();
 
 	
 	
